@@ -60,6 +60,11 @@ public class TicketServiceImpl implements TicketService {
             throw new InvalidPurchaseException("Child and Infant tickets cannot be purchased without an Adult ticket.");
         }
 
+        //reject if the number of tickets is zero
+        if (totalTickets == 0) {
+            throw new InvalidPurchaseException("Number of tickets cannot be zero.");
+        }
+
         // Process payment and seat reservations
         ticketPaymentService.makePayment(accountId , totalAmountToPay);
         int seatsToReserve = adultTickets + childTickets; // Infants don't need a seat
