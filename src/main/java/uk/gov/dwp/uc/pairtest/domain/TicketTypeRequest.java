@@ -4,12 +4,12 @@ package uk.gov.dwp.uc.pairtest.domain;
  * Immutable Object
  */
 
-public class TicketTypeRequest {
+public final class TicketTypeRequest {
 
-    private int noOfTickets;
-    private Type type;
+    private final int noOfTickets;
+    private final Type type;
 
-    public TicketTypeRequest(Type type, int noOfTickets) {
+    public TicketTypeRequest(Type type , int noOfTickets) {
         this.type = type;
         this.noOfTickets = noOfTickets;
     }
@@ -23,7 +23,7 @@ public class TicketTypeRequest {
     }
 
     public enum Type {
-        ADULT, CHILD , INFANT
+        ADULT, CHILD, INFANT
     }
 
 }
