@@ -60,6 +60,11 @@ public class TicketServiceImpl implements TicketService {
             throw new InvalidPurchaseException("Child and Infant tickets cannot be purchased without an Adult ticket.");
         }
 
+        //check if the number of infant tickets is greater than the number of adult tickets
+        if (infantTickets > adultTickets) {
+            throw new InvalidPurchaseException("Infant tickets cannot be greater than Adult tickets.");
+        }
+
         //reject if the number of tickets is zero
         if (totalTickets == 0) {
             throw new InvalidPurchaseException("Number of tickets cannot be zero.");

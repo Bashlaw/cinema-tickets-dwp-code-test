@@ -62,6 +62,18 @@ public class TicketServiceTest {
         );
     }
 
+    @Test(expected = InvalidPurchaseException.class)
+    public void testPurchaseInfantTicketGreaterThanAdult() throws InvalidPurchaseException {
+        TicketPaymentService paymentService = mock(TicketPaymentService.class);
+        SeatReservationService reservationService = mock(SeatReservationService.class);
+        TicketServiceImpl ticketService = new TicketServiceImpl(paymentService , reservationService);
+
+        ticketService.purchaseTickets(123L ,
+                new TicketTypeRequest(TicketTypeRequest.Type.ADULT , 1) , // 1 adult
+                new TicketTypeRequest(TicketTypeRequest.Type.INFANT , 2) // 2 infants
+        );
+    }
+
     @Test
     public void testValidPurchaseWithOnlyAdultTickets() throws InvalidPurchaseException {
         TicketPaymentService paymentService = mock(TicketPaymentService.class);
